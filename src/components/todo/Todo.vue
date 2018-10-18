@@ -20,11 +20,12 @@ import TodoHeader from './TodoHeader'
 import TodoList from './TodoList'
 import TodoFooter from './TodoFooter'
 import PubSub from 'pubsub-js'
+import storageUtil from '../../util/storageUtil'
 export default {
   name: 'Todo',
   data () {
     return {
-      todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')
+      todos: storageUtil.readTodos()
     }
   },
   mounted () { // 执行异步代码
@@ -53,10 +54,11 @@ export default {
   watch: { // 深度监视
     todos: {
       deep: true,
-      handler: function (value) {
-        // 获取最新值，保存到localStorage
-        window.localStorage.setItem('todos_key', JSON.stringify(value))
-      }
+      // handler: function (value) {
+      //   // 获取最新值，保存到localStorage
+      //   storageUtil.saveTodos(value)
+      // }
+      handler: storageUtil.saveTodos
     }
   },
   computed: {
