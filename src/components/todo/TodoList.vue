@@ -9,8 +9,8 @@ import TodoItem from './TodoItem'
 export default {
   name: 'TodoList',
   props: {
-    todos: Array,
-    deleteTodo: Function
+    todos: Array
+    // deleteTodo: Function
   },
   components: {
     TodoItem

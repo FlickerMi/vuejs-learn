@@ -1,9 +1,11 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <TodoHeader :addTodo="addTodo"/>
-      <TodoList :todos="todos" :deleteTodo="deleteTodo"/>
-      <TodoFooter :todos="todos" :deleteCompletedTodos="deleteCompletedTodos" :selectAllTodos="selectAllTodos"/>
+      <!--<TodoHeader :addTodo="addTodo"/>&lt;!&ndash;方法1：通过props获取事件&ndash;&gt;-->
+      <!--<TodoHeader @addTodo="addTodo"/>&lt;!&ndash;方法2：给TodoHeader标签对象绑定addTodo事件监听， 通过$emit触发事件&ndash;&gt;-->
+      <TodoHeader ref="header"/><!--方法3：使用$on绑定事件监听，通过$emit触发事件-->
+      <TodoList :todos="todos"/>
+      <TodoFooter :todos="todos" :deleteCompletedTodos="deleteCompletedTodos"  :selectAllTodos="selectAllTodos"/>
     </div>
   </div>
 </template>
@@ -12,12 +14,21 @@
 import TodoHeader from './TodoHeader'
 import TodoList from './TodoList'
 import TodoFooter from './TodoFooter'
+import PubSub from 'pubsub-js'
 export default {
   name: 'Todo',
   data () {
     return {
       todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')
     }
+  },
+  mounted () { // 执行异步代码
+    // 给<TodoHeader/>绑定addTodo事件监听
+    this.$refs.header.$on('addTodo', this.addTodo)
+    // 方法4：使用PubSub订阅消息，绑定监听事件
+    PubSub.subscribe('deleteTodo', (msg, index) => {
+      this.deleteTodo(index)
+    })
   },
   components: {TodoList, TodoHeader, TodoFooter},
   methods: {

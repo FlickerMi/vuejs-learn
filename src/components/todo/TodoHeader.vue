@@ -13,7 +13,7 @@ export default {
     }
   },
   props: {
-    addTodo: Function
+    // addTodo: Function
   },
   methods: {
     addItem () {
@@ -28,7 +28,8 @@ export default {
         completed: false
       }
       // 添加todo
-      this.addTodo(todo)
+      // this.addTodo(todo)
+      this.$emit('addTodo', todo)
       this.title = ''
     }
   }
