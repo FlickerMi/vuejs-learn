@@ -10,15 +10,15 @@
       </div>
     </header>
     <div class="container">
-      <Add :addComment="addComment"/>
-      <List :comments="comments" :deleteComment="deleteComment"/>
+      <CommentAdd :addComment="addComment"/>
+      <CommentList :comments="comments" :deleteComment="deleteComment"/>
     </div>
   </div>
 </template>
 
 <script>
-import Add from './CommentAdd'
-import List from './CommentList'
+import CommentAdd from './CommentAdd'
+import CommentList from './CommentList'
 export default {
   name: 'Comment',
   data () {
@@ -45,10 +45,10 @@ export default {
       this.comments.splice(index, 1)
     }
   },
-  components: {List, Add},
+  components: {CommentList, CommentAdd},
   comments: {
-    Add,
-    List
+    CommentAdd,
+    CommentList
   }
 }
 </script>

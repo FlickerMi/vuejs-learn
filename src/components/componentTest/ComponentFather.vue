@@ -1,11 +1,11 @@
 <template>
   <div>
     <p>child tells me: {{ childWords }}</p>
-    <component-a msgfromfather='hello!' @child-tell-me-something='listenToMyBoy'></component-a>
+    <component-child msgfromfather='hello!' @child-tell-me-something='listenToMyBoy'></component-child>
   </div>
 </template>
 <script>
-import ComponentA from './ComponentChild'
+import ComponentChild from './ComponentChild'
 export default{
   data: function () {
     return {
@@ -13,7 +13,7 @@ export default{
     }
   },
   components: {
-    ComponentA
+    ComponentChild
   },
   methods: {
     listenToMyBoy: function (msg) {

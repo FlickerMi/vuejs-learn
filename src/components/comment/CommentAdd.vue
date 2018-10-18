@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'Add',
+  name: 'CommentAdd',
   data () {
     return {
       name: '',

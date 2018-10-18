@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'Item',
+  name: 'CommentItem',
   props: {
     comment: Object,
     deleteComment: Function,
