@@ -1,38 +1,41 @@
 <template>
   <div class="todo-footer">
     <label>
-      <input type="checkbox" v-model="isAllChecked"/>
+      <!--<input type="checkbox" v-model="isAllChecked"/>-->
+      <slot name="checkAll"></slot>
     </label>
     <span>
-        <span>已完成{{completedSize}}</span> / 全部{{todos.length}}
+        <!--<span>已完成{{completedSize}} / 全部{{todos.length}}</span>-->
+        <slot name="count"></slot>
       </span>
-    <button class="btn btn-danger" v-show="completedSize" @click="deleteCompletedTodos">清除已完成任务</button>
+    <!--<button class="btn btn-danger" v-show="completedSize" @click="deleteCompletedTodos">清除已完成任务</button>-->
+    <slot name="deleteCompleted"></slot>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TodoFooter',
-  props: {
-    todos: Array,
-    deleteCompletedTodos: Function,
-    selectAllTodos: Function
-  },
-  computed: {
-    completedSize () {
-      return this.todos.filter(todo => todo.completed).length
-      // return this.todos.reduce((preTotal, todo) => preTotal + (todo.completed ? 1 : 0), 0)
-    },
-    isAllChecked: {
-      get () {
-        return this.completedSize === this.todos.length &&
-          this.completedSize > 0
-      },
-      set (value) {
-        this.selectAllTodos(value)
-      }
-    }
-  }
+  name: 'TodoFooter'
+  // props: {
+  //   todos: Array,
+  //   deleteCompletedTodos: Function,
+  //   selectAllTodos: Function
+  // },
+  // computed: {
+  //   completedSize () {
+  //     return this.todos.filter(todo => todo.completed).length
+  //     // return this.todos.reduce((preTotal, todo) => preTotal + (todo.completed ? 1 : 0), 0)
+  //   },
+  //   isAllChecked: {
+  //     get () {
+  //       return this.completedSize === this.todos.length &&
+  //         this.completedSize > 0
+  //     },
+  //     set (value) {
+  //       this.selectAllTodos(value)
+  //     }
+  //   }
+  // }
 }
 </script>
 

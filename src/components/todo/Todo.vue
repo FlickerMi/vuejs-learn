@@ -5,7 +5,12 @@
       <!--<TodoHeader @addTodo="addTodo"/>&lt;!&ndash;方法2：给TodoHeader标签对象绑定addTodo事件监听， 通过$emit触发事件&ndash;&gt;-->
       <TodoHeader ref="header"/><!--方法3：使用$on绑定事件监听，通过$emit触发事件-->
       <TodoList :todos="todos"/>
-      <TodoFooter :todos="todos" :deleteCompletedTodos="deleteCompletedTodos"  :selectAllTodos="selectAllTodos"/>
+      <!--<TodoFooter :todos="todos" :deleteCompletedTodos="deleteCompletedTodos"  :selectAllTodos="selectAllTodos"/>-->
+      <todo-footer>
+        <input type="checkbox" v-model="isAllChecked" slot="checkAll"/>
+        <span slot="count">已完成{{completedSize}} / 全部{{todos.length}}</span>
+        <button class="btn btn-danger" v-show="completedSize" @click="deleteCompletedTodos" slot="deleteCompleted">清除已完成任务</button>
+      </todo-footer>
     </div>
   </div>
 </template>
@@ -51,6 +56,21 @@ export default {
       handler: function (value) {
         // 获取最新值，保存到localStorage
         window.localStorage.setItem('todos_key', JSON.stringify(value))
+      }
+    }
+  },
+  computed: {
+    completedSize () {
+      return this.todos.filter(todo => todo.completed).length
+      // return this.todos.reduce((preTotal, todo) => preTotal + (todo.completed ? 1 : 0), 0)
+    },
+    isAllChecked: {
+      get () {
+        return this.completedSize === this.todos.length &&
+          this.completedSize > 0
+      },
+      set (value) {
+        this.selectAllTodos(value)
       }
     }
   }
