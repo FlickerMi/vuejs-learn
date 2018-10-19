@@ -5,6 +5,7 @@ import Todo from '@/components/todo/Todo'
 import Comment from '@/components/comment/Comment'
 import Ajax from '@/components/ajax/Ajax'
 import User from '@/components/user/User'
+import Mint from '@/components/mintUI/Mint'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/user',
       name: 'User',
       component: User
+    },
+    {
+      path: '/mint',
+      name: 'Mint',
+      component: Mint
     }
   ]
 })
