@@ -6,6 +6,9 @@ import Comment from '@/components/comment/Comment'
 import Ajax from '@/components/ajax/Ajax'
 import User from '@/components/user/User'
 import Mint from '@/components/mintUI/Mint'
+import Route from '@/components/route/Route'
+import RouteHome from '@/components/route/Home'
+import RouteAbout from '@/components/route/About'
 
 Vue.use(Router)
 
@@ -40,6 +43,27 @@ export default new Router({
       path: '/mint',
       name: 'Mint',
       component: Mint
+    },
+    {
+      path: '/route',
+      name: 'Route',
+      component: Route,
+      children: [
+        {
+          path: '/',
+          redirect: '/home'
+        },
+        {
+          path: '/home',
+          name: 'RouteHome',
+          component: RouteHome
+        },
+        {
+          path: '/about/',
+          name: 'RouteAbout',
+          component: RouteAbout
+        }
+      ]
     }
   ]
 })
