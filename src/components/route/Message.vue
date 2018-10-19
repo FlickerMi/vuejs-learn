@@ -1,5 +1,8 @@
 <template>
-  <p>about</p>
+  <div>
+    <p>message</p>
+    <router-link :to="`/route/about/detail/1`"></router-link>
+  </div>
 </template>
 
 <script>

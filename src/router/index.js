@@ -8,7 +8,8 @@ import User from '@/components/user/User'
 import Mint from '@/components/mintUI/Mint'
 import Route from '@/components/route/Route'
 import RouteHome from '@/components/route/Home'
-import RouteAbout from '@/components/route/About'
+import RouteMessage from '@/components/route/Message'
+import RouteMessageDetail from '@/components/route/MessageDetail'
 
 Vue.use(Router)
 
@@ -51,17 +52,24 @@ export default new Router({
       children: [
         {
           path: '/',
-          redirect: '/home'
+          redirect: '/route/home'
         },
         {
-          path: '/home',
+          path: '/route/home',
           name: 'RouteHome',
           component: RouteHome
         },
         {
-          path: '/about/',
-          name: 'RouteAbout',
-          component: RouteAbout
+          path: '/route/message',
+          name: 'RouteMessage',
+          component: RouteMessage,
+          children: [
+            {
+              path: '/route/message/detail/:id',
+              name: 'RouteMessageDetail',
+              component: RouteMessageDetail
+            }
+          ]
         }
       ]
     }
