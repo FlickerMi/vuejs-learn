@@ -14,7 +14,7 @@ export default {
     }
   },
   mounted () {
-    const url = `https://api.github.com/search2/repositories?q=vu&sort=stars`
+    const url = `https://api.github.com/search/repositories?q=vu&sort=stars`
     // 方式1：使用vue-resource获取数据
     /* this.$http.get(url).then(
       response => {

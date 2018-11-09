@@ -55,17 +55,17 @@ export default new Router({
           redirect: '/route/home'
         },
         {
-          path: '/route/home',
+          path: 'home',
           name: 'RouteHome',
           component: RouteHome
         },
         {
-          path: '/route/message',
+          path: 'message',
           name: 'RouteMessage',
           component: RouteMessage,
           children: [
             {
-              path: '/route/message/detail/:id',
+              path: 'detail/:id',
               name: 'RouteMessageDetail',
               component: RouteMessageDetail
             }
